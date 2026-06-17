@@ -1,0 +1,32 @@
+datasets:
+  countingpills:
+    raw_dir: data/raw/CountingPills.v36i.yolov8
+    format: yolo_segmentation
+    class_names:
+      - pill
+    splits:
+      train:
+        images: train/images
+        labels: train/labels
+      val:
+        images: val/images
+        labels: val/labels
+      test:
+        images: test/images
+        labels: test/labels
+    notes: Roboflow YOLOv8 segmentation export. Raw data.yaml references valid/images, but the local folder is val/images.
+
+  mediseg_3pills:
+    raw_dir: data/raw/MEDISEG/3pills
+    format: coco_instance_segmentation
+    images: images
+    annotations: annotations.json
+    notes: MEDISEG subset with fewer pill categories.
+
+  mediseg_32pills:
+    raw_dir: data/raw/MEDISEG/32pills
+    format: coco_instance_segmentation
+    images: images
+    annotations: annotations.json
+    notes: Main MEDISEG subset for final comparison if compute/time allow.
+

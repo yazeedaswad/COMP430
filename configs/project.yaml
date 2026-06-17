@@ -1,0 +1,37 @@
+project:
+  name: automated_pill_counting
+  task: compare_baselines_against_proposed_method
+
+methods:
+  baseline_1:
+    name: yolo_detector
+    role: fast_single_stage_detection_and_counting
+  baseline_2:
+    name: mask_rcnn
+    role: instance_segmentation_detection_and_counting
+  proposed:
+    name: segmentation_assisted_counting_and_crop_classification
+    role: improve_counting_and_categorization_in_realistic_cluttered_images
+
+metrics:
+  detection:
+    - precision
+    - recall
+    - f1
+    - map_50
+  counting:
+    - mae
+    - mse
+    - exact_count_accuracy
+  classification:
+    - accuracy
+    - macro_f1
+  efficiency:
+    - inference_time_ms
+    - fps
+
+data:
+  first_target_dataset: ultralytics_medical_pills
+  main_target_dataset: mediseg_if_accessible
+  notes: Use Medical-Pills first for quick YOLO setup and pipeline smoke tests. Use MEDISEG as the main comparison dataset if accessible because it has instance segmentation masks and realistic clutter.
+
